@@ -27,12 +27,17 @@ SECRET_KEY = 'django-insecure-&kal_vy0mvf&*i=v%b!v5(25rk)l7ix4eivh=$)sh54!vu&=a^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS=[
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'localhost',
+    '127.0.0.1'
+]
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,13 +45,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders',
     'drf_yasg',
     
     'dashboard',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # Place this before CommonMiddleware
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,7 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-MIDDLEWARE += ['corsheaders.middleware.CorsMiddleware']
+
 
 ROOT_URLCONF = 'ai_learn.urls'
 
@@ -148,6 +153,8 @@ CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'http://0.0.0.0',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
 ] # If this is used, then not need to use `CORS_ALLOW_ALL_ORIGINS = True`
 
 CORS_ALLOWED_ORIGIN_REGEXES = [
